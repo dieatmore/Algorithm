@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function minSubArrayLen(target, nums) {
+        let i = 0
+        let sum = 0
+        let result = Infinity
+        for (let j = 0; j < nums.length; j++) {
+          sum += nums[j]
+          while (sum >= target) {
+            result = result < j - i + 1 ? result : j - i + 1
+            sum -= nums[i++]
+          }
+        }
+        return result == Infinity ? 0 : result
+      }
+
+      // test
+      const data = [2, 3, 1, 2, 4, 3]
+      console.log(minSubArrayLen(7, data))
+    </script>
+  </body>
+</html>

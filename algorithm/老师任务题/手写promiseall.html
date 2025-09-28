@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function promiseAll(promises) {
+        return new Promise((resolve, reject) => {
+          if (promises == null || typeof promises[Symbol.iterator] !== 'function') {
+            reject('不是迭代器')
+            return
+          }
+
+          let results = []
+          let count = 0
+          let pArray = Array.from(promises)
+          if (pArray.length == 0) {
+            resolve(results)
+            return
+          }
+          pArray.forEach((pro, index) => {
+            Promise.resolve(pro)
+              .then((result) => {
+                results[index] = result
+                count++
+                if (count == pArray.length) {
+                  resolve(results)
+                }
+              })
+              .catch((error) => reject(error))
+          })
+        })
+      }
+    </script>
+  </body>
+</html>

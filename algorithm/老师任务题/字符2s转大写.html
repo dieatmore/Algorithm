@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="test" style="width: 100%" />
+    <script>
+      function turnUpper(inputx, time) {
+        let timer = null
+        const content = document.getElementById(inputx)
+
+        function handleDown() {
+          clearTimeout(timer)
+        }
+
+        function handleUp() {
+          clearTimeout(timer)
+          timer = setTimeout(() => {
+            content.value = content.value.toUpperCase()
+          }, time)
+        }
+
+        content.addEventListener('keydown', handleDown)
+        content.addEventListener('keyup', handleUp)
+
+        return {
+          handleDown,
+          handleUp
+        }
+      }
+
+      turnUpper('test', 2000)
+    </script>
+  </body>
+</html>

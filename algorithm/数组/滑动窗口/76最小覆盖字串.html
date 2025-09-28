@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // yeye第一个困难！
+      function minWindow(s, t) {
+        let left = 0
+        const cnt = new Map()
+        const cnt2 = new Map()
+        let valid = 0
+        let minLen = Infinity
+        let start = 0
+        if (t.length > s.length) {
+          return ''
+        }
+        for (const item of t) {
+          cnt.set(item, (cnt.get(item) ?? 0) + 1)
+        }
+        for (let right = 0; right < s.length; right++) {
+          if (cnt.has(s[right])) {
+            cnt2.set(s[right], (cnt2.get(s[right]) ?? 0) + 1)
+            if (cnt2.get(s[right]) === cnt.get(s[right])) {
+              valid++
+            }
+          }
+          while (valid == cnt.size) {
+            if (minLen > right - left + 1) {
+              minLen = right - left + 1
+              start = left
+            }
+            if (cnt.has(s[left])) {
+              cnt2.set(s[left], cnt2.get(s[left]) - 1)
+              if (cnt2.get(s[left]) < cnt.get(s[left])) {
+                valid--
+              }
+            }
+            left++
+          }
+        }
+        return minLen == Infinity ? '' : s.substr(start, minLen)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 平方直接排序
+      function sortedSquares(nums) {
+        for (let i = 0; i < nums.length; i++) {
+          nums[i] = nums[i] * nums[i]
+        }
+        return nums.sort((a, b) => a - b)
+      }
+
+      // 2. 双指针
+      //     --unshift是在数组开头插入元素，而数组是 “连续内存存储”，开头插入需要将现有所有元素向后移动 1 位  O(n^2)
+      //     --改用push然后reverse  O(n)
+      function sortedSquares(nums) {
+        let left = 0
+        let right = nums.length - 1
+        const result = []
+        while (left <= right) {
+          itemL = nums[left] * nums[left]
+          itemR = nums[right] * nums[right]
+          if (itemL > itemR) {
+            result.push(itemL)
+            left++
+          } else {
+            result.push(itemR)
+            right--
+          }
+        }
+        return result.reverse()
+      }
+    </script>
+  </body>
+</html>

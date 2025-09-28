@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function backspaceCompare(s, t) {
+        function stringEquals(str) {
+          let slow = 0
+          for (let fast = 0; fast < str.length; fast++) {
+            if (str[fast] != '#') {
+              str[slow++] = str[fast]
+            } else if (slow != 0) {
+              slow--
+            }
+          }
+          return str.slice(0, slow).join('')
+        }
+        return stringEquals(s.split('')) == stringEquals(t.split(''))
+      }
+
+      // test
+      const data = 'ad#c'
+      const data2 = 'c#d#'
+
+      backspaceCompare(data, data2)
+    </script>
+  </body>
+</html>

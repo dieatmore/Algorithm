@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 初始化
+      const data = []
+      for (let i = 0; i < 8000000; i++) {
+        number = Math.floor(Math.random() * 10000).toString()
+        data.push({ id: number })
+      }
+
+      // 1.set去重 n
+      function setTest(data) {
+        const result = []
+        const setx = new Set()
+        for (const item of data) {
+          if (!setx.has(item.id)) {
+            setx.add(item.id)
+            result.push(item)
+          }
+        }
+        return result
+      }
+
+      // 2.map去重
+      function mapTest(data) {
+        const result = []
+        const mapx = new Map()
+        for (const item of data) {
+          if (!mapx.has(item.id)) {
+            mapx.set(item.id, 1)
+            result.push(item)
+          }
+        }
+
+        return result
+      }
+
+      // 3.对象属性唯一去重
+      function objTest(data) {
+        const result = []
+        const obj = {}
+        for (const item of data) {
+          if (!obj.hasOwnProperty(item.id)) {
+            obj[item.id] = 1
+            result.push(item)
+          }
+        }
+      }
+
+      // 测试
+      function timeTest() {
+        const setStart = performance.now()
+        const setResult = setTest(data)
+        const setEnd = performance.now()
+        const setTime = setEnd - setStart
+
+        const mapStart = performance.now()
+        const mapResult = mapTest(data)
+        const mapEnd = performance.now()
+        const mapTime = mapEnd - mapStart
+
+        const objStart = performance.now()
+        const objResult = objTest(data)
+        const objEnd = performance.now()
+        const objTime = objEnd - objStart
+
+        console.log(`set方法用时${setTime}`)
+        console.log(`map方法用时${mapTime}`)
+        console.log(`obj方法用时${objTime}`)
+      }
+
+      timeTest()
+
+      // 测试结果
+
+      // 1.
+      //   set方法用时167.90000000596046
+      //   map方法用时156.90000000596046
+      //   obj方法用时80.8999999910593
+
+      // 2.
+      //   set方法用时384
+      //   map方法用时162.40000000596046
+      //   obj方法用时79.5
+
+      // 3.
+      //   set方法用时173.8999999910593
+      //   map方法用时160.40000000596046
+      //   obj方法用时77.3999999910593
+
+      // 4.
+      //   set方法用时395.79999999701977
+      //   map方法用时168.80000001192093
+      //   obj方法用时82.79999999701977
+
+      // 5.
+      //   set方法用时361.8999999910593
+      //   map方法用时337.40000000596046
+      //   obj方法用时83.5
+
+      // // 4.sort去重 nlgn
+      // function sortTest(data) {
+      //   const result = []
+      //   const sortx = [...data].sort((a, b) => {
+      //     return Number(a.id) - Number(b.id)
+      //   })
+      //   for (let i = 0; i < sortx.length; i++) {
+      //     if (i === sortx.length - 1 || sortx[i].id != sortx[i + 1].id) {
+      //       result.push(sortx[i])
+      //     }
+      //   }
+      //   return result
+      // }
+
+      // // 5.indexof去重 n方
+      // function indexofTest(data) {
+      //   const result = [] //对象
+      //   const m = [] //id值
+      //   for (const item of data) {
+      //     if (m.indexOf(item.id) == -1) {
+      //       m.push(item.id)
+      //       result.push(item)
+      //     }
+      //   }
+      //   return result
+      // }
+    </script>
+  </body>
+</html>

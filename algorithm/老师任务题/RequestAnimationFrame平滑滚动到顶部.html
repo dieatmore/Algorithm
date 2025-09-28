@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 2000px;
+      }
+      #scrollButton {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: none;
+        padding: 10px 15px;
+        background: #5aa9da;
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>这是顶部</h1>
+    <button id="scrollButton">回到顶部</button>
+    <script>
+      const scrollButton = document.getElementById('scrollButton')
+
+      window.addEventListener('scroll', () => {
+        scrollButton.style.display = window.scrollY > 300 ? 'block' : 'none'
+      })
+
+      scrollButton.addEventListener('click', () => {
+        // 初始
+        requestAnimationFrame(scrollTest)
+      })
+
+      function scrollTest() {
+        const nowY = window.scrollY
+        // 浏览器处理滚动位置时，会把小数像素四舍五入为整数(nowY=2, nowY-nowY/8=1.75, 下一次nowY还是2)
+        if (nowY > 0) {
+          const distance = Math.max(nowY / 8, 1)
+          window.scrollTo(0, nowY - distance)
+          requestAnimationFrame(scrollTest)
+        }
+      }
+    </script>
+  </body>
+</html>

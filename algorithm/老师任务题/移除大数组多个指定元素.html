@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 初始化
+      const data = []
+      for (let i = 0; i < 8000000; i++) {
+        number = Math.floor(Math.random() * 10000).toString()
+        data.push({ id: number })
+      }
+
+      // set记录遍历
+      function removeSet(data, indexs) {
+        const setx = new Set()
+        const result = []
+        indexs.forEach((index) => {
+          setx.add(index)
+        })
+
+        for (let i = 0; i < data.length; i++) {
+          if (!setx.has(i)) {
+            result.push(data[i])
+          }
+        }
+
+        return result
+      }
+
+      // map记录遍历
+      function removeMap(data, indexs) {
+        const mapx = new Map()
+        const result = []
+        indexs.forEach((index) => {
+          mapx.set(index, 1)
+        })
+
+        for (let i = 0; i < data.length; i++) {
+          if (!mapx.has(i)) {
+            result.push(data[i])
+          }
+        }
+
+        return result
+      }
+
+      // 3.对象属性记录遍历
+      function removeObj(data, indexs) {
+        const result = []
+        const obj = {}
+        indexs.forEach((index) => {
+          obj.index = 1
+        })
+
+        for (let i = 0; i < data.length; i++) {
+          if (!obj.hasOwnProperty(i)) {
+            result.push(data[i])
+          }
+        }
+      }
+
+      function timeTest() {
+        const indexTest = [0, 100, 500, 999, 1000, 9999, 99999, 999999, 7999999]
+
+        const setStart = performance.now()
+        const setResult = removeSet(data, indexTest)
+        const setEnd = performance.now()
+        const setTime = setEnd - setStart
+
+        const mapStart = performance.now()
+        const mapResult = removeMap(data, indexTest)
+        const mapEnd = performance.now()
+        const mapTime = mapEnd - mapStart
+
+        const objStart = performance.now()
+        const objResult = removeObj(data, indexTest)
+        const objEnd = performance.now()
+        const objTime = objEnd - objStart
+
+        console.log(`set方法用时${setTime}`)
+        console.log(`map方法用时${mapTime}`)
+        console.log(`obj方法用时${objTime}`)
+      }
+
+      timeTest()
+    </script>
+  </body>
+</html>

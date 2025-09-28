@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function totalFruit(fruits) {
+        let i = 0
+        let left = 0
+        let map = new Map()
+        let length = 0
+        for (let j = 0; j < fruits.length; j++) {
+          map.set(fruits[j], (map.get(fruits[j]) ?? 0) + 1)
+          while (map.size > 2) {
+            left = fruits[i]
+            map.set(left, map.get(left) - 1)
+            i++
+            if (map.get(left) === 0) {
+              map.delete(left)
+            }
+          }
+          length = Math.max(length, j - i + 1)
+        }
+        return length
+      }
+    </script>
+  </body>
+</html>
