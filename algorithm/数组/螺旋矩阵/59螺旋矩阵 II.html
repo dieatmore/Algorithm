@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function generateMatrix(n) {
+        function initMatrix(number) {
+          return new Array(number).fill(0).map(() => new Array(number).fill(0));
+        }
+        const matrix = initMatrix(n);
+        let top = 0;
+        let bottom = n - 1;
+        let left = 0;
+        let right = n - 1;
+        let k = 1;
+        while (k <= n * n) {
+          for (let i = left; i <= right; i++) {
+            matrix[top][i] = k++;
+          }
+          top++;
+          for (let i = top; i <= bottom; i++) {
+            matrix[i][right] = k++;
+          }
+          right--;
+          for (let i = right; i >= left; i--) {
+            matrix[bottom][i] = k++;
+          }
+          bottom--;
+          for (let i = bottom; i >= top; i--) {
+            matrix[i][left] = k++;
+          }
+          left++;
+        }
+        return matrix;
+      }
+
+      console.log(generateMatrix(3));
+    </script>
+  </body>
+</html>
