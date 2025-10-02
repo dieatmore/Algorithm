@@ -5,6 +5,7 @@
 用于记录算法学习过程中的笔记、代码实现以及解题思路，涵盖不同类型的算法题目，帮助自己巩固算法知识
 
 - LeetCode
+- KamaCoder
 - 老师布置的一些任务题
 
 🥳 **EASY**
@@ -35,6 +36,11 @@
 
 - 🤔 [54. 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/description/)
 - 🤔 [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
+
+##### 前缀和
+
+- 🥳 [58. 区间和](https://kamacoder.com/problempage.php?pid=1070)
+- 🤔 [44. 开发商购买土地](https://kamacoder.com/problempage.php?pid=1044)
 
 <hr/>
 
