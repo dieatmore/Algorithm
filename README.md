@@ -6,7 +6,8 @@
 
 - LeetCode
 - KamaCoder
-- 老师布置的一些任务题
+- 手写题
+- hot100
 
 🥳 **EASY**
 
@@ -15,6 +16,12 @@
 😫 **HARD**
 
 <hr/>
+
+### hot100
+
+- 🥳 [1. 两数之和 ](https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked)
+- 🤔 [49. 字母异位词分组](https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked)
+- 🤔 [128. 最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked)
 
 ### 数组
 
@@ -61,7 +68,7 @@
 
 <hr/>
 
-### 老师任务题
+### 手写题
 
 - 大数据对象数组去重(set、map、对象属性唯一 hasOwnProperty 三种方法测试，hasOwnProperty 用时最短)
 - **防抖 debounce**
