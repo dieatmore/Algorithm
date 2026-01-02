@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function moveZeroes(nums) {
+        let slow = 0
+        for (let fast = 1; fast < nums.length; fast++) {
+          if (nums[slow] == 0) {
+            if (nums[fast] != 0) {
+              nums[slow++] = nums[fast]
+              nums[fast] = 0
+            }
+          } else slow++
+        }
+        return nums
+      }
+
+      // test
+      const data1 = [0, 1, 0, 3, 12]
+      const data2 = [0]
+
+      console.log(moveZeroes(data1))
+      console.log(moveZeroes(data2))
+    </script>
+  </body>
+</html>
