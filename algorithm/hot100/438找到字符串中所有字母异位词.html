@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var findAnagrams = function (s, p) {
+        const cntP = new Array(26).fill(0);
+        for (const c of p) {
+          cntP[c.charCodeAt() - "a".charCodeAt()]++;
+        }
+        const ans = [];
+        const cntS = new Array(26).fill(0);
+        for (let right = 0; right < s.length; right++) {
+          cntS[s[right].charCodeAt() - "a".charCodeAt()]++; // 右端点字母进入窗口
+          const left = right - p.length + 1;
+          if (left < 0) {
+            // 窗口长度不足 len(p)
+            continue;
+          }
+          if (_.isEqual(cntS, cntP)) {
+            // s' 和 p 的每种字母的出现次数都相同
+            ans.push(left); // s' 左端点下标加入答案
+          }
+          cntS[s[left].charCodeAt() - "a".charCodeAt()]--; // 左端点字母离开窗口
+        }
+        return ans;
+
+        // 不定长滑动窗口
+
+        // // 统计 p 的每种字母的出现次数
+        // const cnt = new Array(26).fill(0);
+        // for (const c of p) {
+        //   cnt[c.charCodeAt() - "a".charCodeAt()]++;
+        // }
+        // const ans = [];
+        // let left = 0;
+        // for (let right = 0; right < s.length; right++) {
+        //   const c = s[right].charCodeAt() - "a".charCodeAt();
+        //   cnt[c]--; // 右端点字母进入窗口
+        //   while (cnt[c] < 0) {
+        //     // 字母 c 太多了
+        //     cnt[s[left].charCodeAt() - "a".charCodeAt()]++; // 左端点字母离开窗口
+        //     left++;
+        //   }
+        //   if (right - left + 1 === p.length) {
+        //     // s' 和 p 的每种字母的出现次数都相同（证明见上）
+        //     ans.push(left); // s' 左端点下标加入答案
+        //   }
+        // }
+        // return ans;
+      };
+    </script>
+  </body>
+</html>

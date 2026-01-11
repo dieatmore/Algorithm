@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var merge = function (intervals) {
+        intervals.sort((a, b) => a[0] - b[0]);
+        const ans = [];
+        let m = 0;
+        for (const item of intervals) {
+          m = ans.length;
+          if (m && item[0] <= ans[m - 1][1]) {
+            ans[m - 1][1] = Math.max(ans[m - 1][1], item[1]);
+          } else {
+            ans.push(item);
+          }
+        }
+        return ans;
+      };
+    </script>
+  </body>
+</html>
