@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 左右数组分别存储
+      //   var productExceptSelf = function (nums) {
+      //     const n = nums.length;
+      //     const leftArr = [];
+      //     const rightArr = [];
+      //     const ans = [];
+      //     leftArr[0] = 1;
+      //     rightArr[n - 1] = 1;
+      //     for (let i = 1; i < n; i++) {
+      //       leftArr[i] = leftArr[i - 1] * nums[i - 1];
+      //     }
+      //     for (let i = n - 2; i >= 0; i--) {
+      //       rightArr[i] = rightArr[i + 1] * nums[i + 1];
+      //     }
+      //     for (let i = 0; i < n; i++) {
+      //       nums[i] = leftArr[i] * rightArr[i];
+      //     }
+      //     return nums;
+      //   };
+
+      // 2. output一个数组，存储覆盖
+      var productExceptSelf = function (nums) {
+        const n = nums.length;
+        const output = [];
+        output[0] = 1;
+        for (let i = 1; i < n; i++) {
+          output[i] = output[i - 1] * nums[i - 1];
+        }
+        let rightNumber = 1;
+        for (let i = n - 1; i >= 0; i--) {
+          output[i] *= rightNumber;
+          rightNumber *= nums[i];
+        }
+        return output;
+      };
+    </script>
+  </body>
+</html>
