@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var detectCycle = function (head) {
+        let fast = head,
+          slow = head;
+        let second = head;
+        while (fast && fast.next) {
+          slow = slow.next;
+          fast = fast.next.next;
+          if (fast == slow) {
+            while (slow != second) {
+              slow = slow.next;
+              second = second.next;
+            }
+            return slow;
+          }
+        }
+        return null;
+      };
+    </script>
+  </body>
+</html>

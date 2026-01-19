@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var searchMatrix = function (matrix, target) {
+        let x = 0;
+        let y = matrix[0].length - 1;
+        while (x < matrix.length && y >= 0) {
+          if (matrix[x][y] == target) return true;
+          if (matrix[x][y] > target) {
+            y--;
+          } else {
+            x++;
+          }
+        }
+        return false;
+      };
+    </script>
+  </body>
+</html>

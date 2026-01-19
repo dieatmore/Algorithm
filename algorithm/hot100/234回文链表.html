@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var isPalindrome = function (head) {
+        // 反转链表
+        const reverseList = (head) => {
+          let prev = null;
+          let curr = head;
+          while (curr != null) {
+            const next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+          }
+          return prev;
+        };
+
+        // 寻找链表左半部分终点
+        const endOfLeft = (head) => {
+          let fast = head;
+          let slow = head;
+          while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+          }
+          return slow;
+        };
+
+        const end = endOfLeft(head);
+        const changeRight = reverseList(end.next);
+        let p1 = head;
+        let p2 = changeRight;
+        let result = true;
+        while (result && p2 != null) {
+          if (p1.val != p2.val) result = false;
+          p1 = p1.next;
+          p2 = p2.next;
+        }
+        end.next = reverseList(end.next);
+        return result;
+      };
+    </script>
+  </body>
+</html>
