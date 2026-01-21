@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var removeNthFromEnd = function (head, n) {
+        const dummy = new ListNode(0, head);
+        let left = dummy;
+        let right = dummy;
+        while (n--) {
+          right = right.next;
+        }
+        while (right.next) {
+          left = left.next;
+          right = right.next;
+        }
+        left.next = left.next.next;
+        return dummy.next;
+      };
+    </script>
+  </body>
+</html>

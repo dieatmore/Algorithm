@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   1. 普通递归
+      var inorderTraversal = function (root) {
+        const res = [];
+        const inorder = (root) => {
+          if (!root) {
+            return;
+          }
+          inorder(root.left);
+          res.push(root.val);
+          inorder(root.right);
+        };
+        inorder(root);
+        return res;
+      };
+
+      //   2. Morris 中序遍历
+      var inorderTraversal = function (root) {
+        const res = [];
+        let prev = null;
+        while (root) {
+          if (root.left) {
+            prev = root.left;
+            while (prev.right && prev.right != root) {
+              prev = prev.right;
+            }
+
+            if (!prev.right) {
+              prev.right = root;
+              root = root.left;
+            } else {
+              res.push(root.val);
+              prev.right = null;
+              root = root.right;
+            }
+          } else {
+            res.push(root.val);
+            root = root.right;
+          }
+        }
+        return res;
+      };
+    </script>
+  </body>
+</html>
