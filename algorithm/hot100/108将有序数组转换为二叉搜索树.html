@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var sortedArrayToBST = function (nums) {
+        const build = (left, right) => {
+          if (left == right) return null;
+          const mid = Math.floor((left + right) / 2);
+          return new TreeNode(
+            nums[mid],
+            build(left, mid),
+            build(mid + 1, right),
+          );
+        };
+        return build(0, nums.length);
+      };
+    </script>
+  </body>
+</html>
