@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var kthSmallest = function (root, k) {
+        const q = [];
+        while (root || q.length) {
+          while (root) {
+            q.push(root);
+            root = root.left;
+          }
+          root = q.pop();
+          k--;
+          if (k == 0) return root.val;
+          root = root.right;
+        }
+        return null;
+      };
+    </script>
+  </body>
+</html>

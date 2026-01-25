@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const check = (root, lower, upper) => {
+        if (root == null) return true;
+        if (root.val >= upper || root.val <= lower) return false;
+        return (
+          check(root.left, lower, root.val) &&
+          check(root.right, root.val, upper)
+        );
+      };
+      var isValidBST = function (root) {
+        return check(root, -Infinity, Infinity);
+      };
+    </script>
+  </body>
+</html>
