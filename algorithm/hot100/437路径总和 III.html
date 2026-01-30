@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var pathSum = function (root, targetSum) {
+        const map = new Map();
+        map.set(0, 1);
+        let ans = 0;
+        function dfs(node, s) {
+          if (node == null) return;
+          s += node.val;
+          if (map.has(s - targetSum)) ans += map.get(s - targetSum);
+          map.set(s, (map.get(s) ?? 0) + 1);
+          dfs(node.left, s);
+          dfs(node.right, s);
+          map.set(s, map.get(s) - 1);
+        }
+        dfs(root, 0);
+        return ans;
+      };
+    </script>
+  </body>
+</html>

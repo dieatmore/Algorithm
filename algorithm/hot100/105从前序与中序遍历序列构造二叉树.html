@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var buildTree = function (preorder, inorder) {
+        const index = new Map();
+        const n = inorder.length;
+        for (let i = 0; i < n; i++) {
+          index.set(inorder[i], i);
+        }
+
+        const dfs = (preL, preR, inL) => {
+          if (preL == preR) return null;
+          const rootIndex = index.get(preorder[preL]);
+          const leftSize = rootIndex - inL;
+          const left = dfs(preL + 1, preL + leftSize + 1, inL);
+          const right = dfs(preL + leftSize + 1, preR, rootIndex + 1);
+          return new TreeNode(preorder[preL], left, right);
+        };
+        return dfs(0, n, 0);
+      };
+    </script>
+  </body>
+</html>
