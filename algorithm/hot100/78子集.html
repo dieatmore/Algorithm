@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 位运算
+      var subsets = function (nums) {
+        const n = nums.length;
+        const ans = [];
+        for (let i = 0; i < 1 << n; i++) {
+          const item = [];
+          for (let j = 0; j < n; j++) {
+            if ((i >> j) & 1) {
+              item.push(nums[j]);
+            }
+          }
+          ans.push(item);
+        }
+        return ans;
+      };
+
+      //   2. 回溯法（选/不选）
+      var subsets = function (nums) {
+        const n = nums.length;
+        const ans = [];
+        const path = [];
+        function dfs(i) {
+          if (i == n) {
+            ans.push(path.slice());
+            return;
+          }
+
+          dfs(i + 1); // i位不选
+
+          path.push(nums[i]); // i位选
+          dfs(i + 1);
+          path.pop(); // 恢复现场
+        }
+        dfs(0);
+        return ans;
+      };
+    </script>
+  </body>
+</html>
