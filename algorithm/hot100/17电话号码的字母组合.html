@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const MAPPING = [
+        "",
+        "",
+        "abc",
+        "def",
+        "ghi",
+        "jkl",
+        "mno",
+        "pqrs",
+        "tuv",
+        "wxyz",
+      ];
+
+      var letterCombinations = function (digits) {
+        const n = digits.length;
+        const path = Array(n).fill(0);
+        const ans = [];
+
+        function dfs(i) {
+          if (i == n) {
+            ans.push(path.join(""));
+            return;
+          }
+          let s = MAPPING[digits[i]];
+          for (let j = 0; j < s.length; j++) {
+            path[i] = s[j];
+            dfs(i + 1);
+          }
+        }
+        dfs(0);
+        return ans;
+      };
+    </script>
+  </body>
+</html>
