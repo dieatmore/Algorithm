@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var combinationSum = function (candidates, target) {
+        const ans = [];
+        function dfs(start, temp, sum) {
+          if (sum >= target) {
+            if (sum == target) {
+              ans.push(temp.slice());
+            }
+            return;
+          }
+          for (let i = start; i < candidates.length; i++) {
+            temp.push(candidates[i]);
+            dfs(i, temp, sum + candidates[i]);
+            temp.pop();
+          }
+        }
+        dfs(0, [], 0);
+        return ans;
+      };
+    </script>
+  </body>
+</html>

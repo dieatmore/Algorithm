@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var generateParenthesis = function (n) {
+        const ans = [];
+        const path = [];
+
+        // i: 填了 i 个括号； balance：左 - 右 个数
+        function dfs(i, balance) {
+          if (path.length == n) {
+            const res = Array(n * 2).fill(")");
+            for (const left of path) {
+              res[left] = "(";
+            }
+            ans.push(res.join(""));
+            return;
+          }
+          for (let right = 0; right <= balance; right++) {
+            path.push(i + right);
+            dfs(i + right + 1, balance - right + 1);
+            path.pop();
+          }
+        }
+        dfs(0, 0);
+        return ans;
+      };
+    </script>
+  </body>
+</html>

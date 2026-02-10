@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var exist = function (board, word) {
+        const m = board.length;
+        const n = board[0].length;
+        function dfs(i, x, y) {
+          if (x < 0 || x >= m || y < 0 || y >= n || board[x][y] != word[i])
+            return false;
+          if (i == word.length - 1) return true;
+          board[x][y] = "#";
+          for (const [dx, dy] of [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0],
+          ]) {
+            if (dfs(i + 1, x + dx, y + dy)) return true;
+          }
+          board[x][y] = word[i];
+          return false;
+        }
+        for (let i = 0; i < m; i++) {
+          for (let j = 0; j < n; j++) {
+            if (dfs(0, i, j)) return true;
+          }
+        }
+        return false;
+      };
+    </script>
+  </body>
+</html>
