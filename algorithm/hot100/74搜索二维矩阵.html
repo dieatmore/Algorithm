@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var searchMatrix = function (matrix, target) {
+        const m = matrix.length;
+        const n = matrix[0].length;
+        let low = 0;
+        let high = m * n - 1;
+        while (low <= high) {
+          const mid = Math.floor((high - low) / 2) + low;
+          const x = matrix[Math.floor(mid / n)][mid % n];
+          if (target == x) {
+            return true;
+          } else if (target < x) {
+            high = mid - 1;
+          } else {
+            low = mid + 1;
+          }
+        }
+        return false;
+      };
+    </script>
+  </body>
+</html>
