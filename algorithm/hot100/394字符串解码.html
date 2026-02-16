@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var decodeString = function (s) {
+        if (s.length == 0) return s;
+        if ("a" <= s[0] && s[0] <= "z") return s[0] + decodeString(s.slice(1));
+        const i = s.indexOf("[");
+        let balance = 1;
+        for (let j = i + 1; j < s.length; j++) {
+          if (s[j] == "[") balance++;
+          else if (s[j] == "]") {
+            balance--;
+            if (balance == 0) {
+              const count = parseInt(s.slice(0, i));
+              return (
+                decodeString(s.slice(i + 1, j)).repeat(count) +
+                decodeString(s.slice(j + 1))
+              );
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
