@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,15 +8,13 @@
   <body>
     <script>
       function debounce(func, delay) {
-        let timer = null
-        return function () {
-          const context = this
-          const args = arguments
-          clearTimeout(timer)
+        let timer = null;
+        return function (...args) {
+          clearTimeout(timer);
           timer = setTimeout(() => {
-            func.apply(context, args)
-          }, delay)
-        }
+            func.apply(this, args);
+          }, delay);
+        };
       }
     </script>
   </body>
