@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var jump = function (nums) {
+        let curr = 0;
+        let mx = 0;
+        let ans = 0;
+        for (let i = 0; i < nums.length - 1; i++) {
+          mx = Math.max(mx, i + nums[i]);
+          if (i == curr) {
+            curr = mx;
+            ans++;
+          }
+        }
+        return ans;
+      };
+    </script>
+  </body>
+</html>
